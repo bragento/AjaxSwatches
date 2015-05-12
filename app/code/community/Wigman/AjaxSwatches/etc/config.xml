@@ -42,11 +42,11 @@
 				</rewrite>
             </configurableswatches_resource>
             
-		    <configurableswatches>
+		    <!--<configurableswatches>
 		        <rewrite>
 		            <observer>Wigman_AjaxSwatches_Model_Observer</observer>
 		        </rewrite>
-		    </configurableswatches>
+		    </configurableswatches>-->
 		</models>
 	</global>
 	<frontend>

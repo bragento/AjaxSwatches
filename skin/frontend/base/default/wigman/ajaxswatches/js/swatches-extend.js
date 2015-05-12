@@ -47,29 +47,29 @@ $j(document).ready(function() {
 });
 
 ConfigurableMediaImages.ajaxLoadSwatchList = function(){
-	
+
 	if(typeof(ConfigurableSwatchesList) != 'undefined'){
-			
+
 		var items = $j('.products-grid li.item,.products-list li.item');
 		var i = 0;
-		
+
 		//we allow the activeSwatch to be defined globally for compatibility with for example Mana filters (defined in wigman_ajaxswatches.xml)
-		if(typeof activeSwatchSelector === 'undefined'){ 			
+		if(typeof activeSwatchSelector === 'undefined'){
 			activeSwatchSelector = '.swatch-current .value img'; //default selector
 		}
 		var activeSwatch = $j(activeSwatchSelector);
-		
+
 		var pids = [];
 		var viewMode = ($j('#products-list').length>0) ? 'list':'grid';
-		
+
 		items.find('.product-image img').each(function(){
-			
+
 			var target = $j(this);
 			pids.push(target.attr('id').split('-').pop());
-			
+
 			target.parentsUntil('ul,ol').find('.product-name').after('<div class="swatch-loader" style="text-align:center;"><img src="'+posturl+'skin/frontend/base/default/wigman/ajaxswatches/images/ajax-loader.gif" width="17" height="17" style="display:inline;" /></div>');
 		});
-		
+
 		$j.ajax({
 				url: posturl + 'ajaxswatches/ajax/getlistdata',
 				dataType: 'json',
@@ -85,27 +85,27 @@ ConfigurableMediaImages.ajaxLoadSwatchList = function(){
 								// It's not valid HTML having multiple elements with same ID
 								// but in some cases there are same products on one page (e.g. top seller slider)
 								var parentLi = $j('[id="product-collection-image-' + swatchObj['id'] + '"]').parentsUntil('ul,ol');
-								
+
 								//$j(swatchObj['value']).insertAfter(parentLi.find('.product-name'));
 								parentLi.find('.swatch-loader').replaceWith($j(swatchObj['value']));
 								if(i == items.length){
 									if(activeSwatch.length){
-									
+
 										items.find(".configurable-swatch-list li[data-option-label='"+activeSwatch.attr('title')
 											.toLowerCase()+"']")
 											.addClass('filter-match');
-										
+
 									}
 									ConfigurableMediaImages.ajaxInit(data.jsons);
 								}
-							})	
+							})
 						}
 					} else {
 						//return false;
 					}
 				}
 			});
-		
+
     }
 }
 

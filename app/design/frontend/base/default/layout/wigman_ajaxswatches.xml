@@ -28,9 +28,6 @@
 <layout version="0.1.0">
 
 	<product_list>
-		<reference name="product_list.after">
-	            <remove name="configurableswatches.media.js.list" />
-		</reference>
 		<reference name="head">
 			<!-- add Js script to head -->
 	        <action method="addItem"><type>skin_js</type><name>wigman/ajaxswatches/js/swatches-extend.js</name><params/></action>
